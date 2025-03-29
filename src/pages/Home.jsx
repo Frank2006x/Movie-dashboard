@@ -1,4 +1,5 @@
 import MovieCard from "../components/MovieCard"
+import "../css/Home.css"
 import { useState } from "react"
 function Home(){
     const [searchQuery,setSearchQuery]= useState("");
@@ -10,7 +11,7 @@ function Home(){
     const handleSubmit=(e)=>{
         e.preventDefault();
         alert(searchQuery)
-        setSearchQuery("----")
+        setSearchQuery("")
     }  
 
     return (
@@ -24,12 +25,15 @@ function Home(){
             value={searchQuery}
             onChange={(e)=>setSearchQuery(e.target.value)}
             />
-            <button type="submit" className="search-btn">Search</button>
+            <button type="submit" className="search-button">Search</button>
         </form>
-        
-        {movie.map(item=>(
-            item.title.toLowerCase().startsWith(searchQuery.toLowerCase()) && <MovieCard movie={item} key={item.id}/>
-        ))}
+
+
+        <div className="movie-grid">
+            {movie.map(item=>(
+                item.title.toLowerCase().startsWith(searchQuery.toLowerCase()) && <MovieCard movie={item} key={item.id}/>
+            ))}
+        </div>
         </div>
         
     )
